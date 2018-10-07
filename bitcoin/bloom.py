@@ -1,11 +1,11 @@
-# Copyright (C) 2013-2014 The python-bitcoinlib developers
+# Copyright (C) 2013-2014 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -17,8 +17,8 @@ import struct
 import sys
 import math
 
-import bitcoin.core
-import bitcoin.core.serialize
+import curium.core
+import curium.core.serialize
 
 def _ROTL32(x, r):
     assert x <= 0xFFFFFFFF
@@ -84,7 +84,7 @@ def MurmurHash3(nHashSeed, vDataToHash):
     return h1 & 0xFFFFFFFF
 
 
-class CBloomFilter(bitcoin.core.serialize.Serializable):
+class CBloomFilter(curium.core.serialize.Serializable):
     # 20,000 items with fp rate < 0.1% or 10,000 items and <0.0001%
     MAX_BLOOM_FILTER_SIZE = 36000
     MAX_HASH_FUNCS = 50
@@ -128,7 +128,7 @@ class CBloomFilter(bitcoin.core.serialize.Serializable):
 
         elem may be a COutPoint or bytes
         """
-        if isinstance(elem, bitcoin.core.COutPoint):
+        if isinstance(elem, curium.core.COutPoint):
             elem = elem.serialize()
 
         if len(self.vData) == 1 and self.vData[0] == 0xff:
@@ -144,7 +144,7 @@ class CBloomFilter(bitcoin.core.serialize.Serializable):
 
         elem may be a COutPoint or bytes
         """
-        if isinstance(elem, bitcoin.core.COutPoint):
+        if isinstance(elem, curium.core.COutPoint):
             elem = elem.serialize()
 
         if len(self.vData) == 1 and self.vData[0] == 0xff:
@@ -167,10 +167,10 @@ class CBloomFilter(bitcoin.core.serialize.Serializable):
 
     @classmethod
     def stream_deserialize(cls, f):
-        vData = bytearray(bitcoin.core.serialize.BytesSerializer.stream_deserialize(f))
+        vData = bytearray(curium.core.serialize.BytesSerializer.stream_deserialize(f))
         (nHashFuncs,
          nTweak,
-         nFlags) = CBloomFilter.__struct.unpack(bitcoin.core.ser_read(f, CBloomFilter.__struct.size))
+         nFlags) = CBloomFilter.__struct.unpack(curium.core.ser_read(f, CBloomFilter.__struct.size))
         # These arguments can be fake, the real values are set just after
         deserialized = cls(1, 0.01, 0, CBloomFilter.UPDATE_ALL)
         deserialized.vData = vData
@@ -181,10 +181,10 @@ class CBloomFilter(bitcoin.core.serialize.Serializable):
 
     def stream_serialize(self, f):
         if sys.version > '3':
-            bitcoin.core.serialize.BytesSerializer.stream_serialize(self.vData, f)
+            curium.core.serialize.BytesSerializer.stream_serialize(self.vData, f)
         else:
             # 2.7 has problems with f.write(bytearray())
-            bitcoin.core.serialize.BytesSerializer.stream_serialize(bytes(self.vData), f)
+            curium.core.serialize.BytesSerializer.stream_serialize(bytes(self.vData), f)
         f.write(self.__struct.pack(self.nHashFuncs, self.nTweak, self.nFlags))
 
 __all__ = (

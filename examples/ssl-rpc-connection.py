@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
-# Copyright (C) 2014 The python-bitcoinlib developers
+# Copyright (C) 2014 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -16,13 +16,13 @@
 
 # This sets up SSL on a localhost connection. Not terribly useful but it will be iterated on.
 
-#  Linux: cd ~/.bitcoin
+#  Linux: cd ~/.curium
 #  Mac: cd ~/Library/Application\ Support/Bitcoin/
 #  openssl genrsa -out server.pem 2048
 #  openssl req -new -x509 -nodes -sha256 -days 3650 -key server.pem > server.cert
 #  The prompts are optional, you can just hit enter
 
-# Verify that your bitcoin.conf exists in the above directory and contains the following lines:
+# Verify that your curium.conf exists in the above directory and contains the following lines:
 # server=1
 # rpcssl=1
 # rpcuser=CHANGETHIS
@@ -31,7 +31,7 @@
 # rpcsslprivatekeyfile=server.pem
 # rpcsslcertificatechainfile=server.cert
 
-import bitcoin.rpc
+import curium.rpc
 
-proxy_connection = bitcoin.rpc.Proxy()
+proxy_connection = curium.rpc.Proxy()
 print(proxy_connection.getnewaddress())

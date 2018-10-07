@@ -1,11 +1,11 @@
-# Copyright (C) 2012-2015 The python-bitcoinlib developers
+# Copyright (C) 2012-2015 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -30,10 +30,10 @@ else:
 
 # Bad practice, so we have a __all__ at the end; this should be cleaned up
 # later.
-from bitcoin.core import *
-from bitcoin.core.serialize import *
-from bitcoin.net import *
-import bitcoin
+from curium.core import *
+from curium.core.serialize import *
+from curium.net import *
+import curium
 
 MSG_WITNESS_FLAG = 1 << 30
 MSG_TYPE_MASK = 0xffffffff >> 2
@@ -62,7 +62,7 @@ class MsgSerializable(Serializable):
         f = _BytesIO()
         self.msg_ser(f)
         body = f.getvalue()
-        res = bitcoin.params.MESSAGE_START
+        res = curium.params.MESSAGE_START
         res += self.command
         res += b"\x00" * (12 - len(self.command))
         res += struct.pack(b"<I", len(body))
@@ -85,9 +85,9 @@ class MsgSerializable(Serializable):
         recvbuf = ser_read(f, 4 + 12 + 4 + 4)
 
         # check magic
-        if recvbuf[:4] != bitcoin.params.MESSAGE_START:
+        if recvbuf[:4] != curium.params.MESSAGE_START:
             raise ValueError("Invalid message start '%s', expected '%s'" %
-                             (b2x(recvbuf[:4]), b2x(bitcoin.params.MESSAGE_START)))
+                             (b2x(recvbuf[:4]), b2x(curium.params.MESSAGE_START)))
 
         # remaining header fields: command, msg length, checksum
         command = recvbuf[4:4+12].split(b"\x00", 1)[0]
@@ -128,8 +128,8 @@ class msg_version(MsgSerializable):
         self.addrTo = CAddress(PROTO_VERSION)
         self.addrFrom = CAddress(PROTO_VERSION)
         self.nNonce = random.getrandbits(64)
-        self.strSubVer = (b'/python-bitcoinlib:' +
-                          bitcoin.__version__.encode('ascii') + b'/')
+        self.strSubVer = (b'/python-curiumlib:' +
+                          curium.__version__.encode('ascii') + b'/')
         self.nStartingHeight = -1
         self.fRelay = True
 

@@ -1,11 +1,11 @@
-# Copyright (C) 2012-2014 The python-bitcoinlib developers
+# Copyright (C) 2012-2014 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -14,14 +14,14 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 import struct
 import socket
 
-from bitcoin.core.serialize import (
+from curium.core.serialize import (
         Serializable,
         VarStringSerializer,
         intVectorSerializer,
         ser_read,
         uint256VectorSerializer,
 )
-from bitcoin.core import b2lx
+from curium.core import b2lx
 
 PROTO_VERSION = 60002
 CADDR_TIME_VERSION = 31402

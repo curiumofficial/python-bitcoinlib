@@ -1,11 +1,11 @@
-# Copyright (C) 2013-2017 The python-bitcoinlib developers
+# Copyright (C) 2013-2017 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -21,9 +21,9 @@ if sys.version > '3':
 
 from binascii import unhexlify
 
-from bitcoin.core import *
-from bitcoin.core.script import *
-from bitcoin.core.scripteval import *
+from curium.core import *
+from curium.core.script import *
+from curium.core.scripteval import *
 
 def parse_script(s):
     def ishex(s):

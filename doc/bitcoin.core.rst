@@ -1,4 +1,4 @@
-bitcoin.core
+curium.core
 ============
 
 Everything consensus critical is found in the core subpackage.
@@ -6,25 +6,25 @@ Everything consensus critical is found in the core subpackage.
 :mod:`core`
 -----------
 
-.. automodule:: bitcoin.core
+.. automodule:: curium.core
 
 :mod:`key`
 ----------
 
-.. automodule:: bitcoin.core.key
+.. automodule:: curium.core.key
 
 :mod:`script`
 -------------
 
-.. automodule:: bitcoin.core.script
+.. automodule:: curium.core.script
 
 :mod:`scripteval`
 -----------------
 
-.. automodule:: bitcoin.core.scripteval
+.. automodule:: curium.core.scripteval
 
 :mod:`serialize`
 ----------------
 
-.. automodule:: bitcoin.core.serialize
+.. automodule:: curium.core.serialize
 

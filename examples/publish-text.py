@@ -24,9 +24,9 @@
 # utility has had very little testing and is being published as a
 # proof-of-concept only.
 
-# Requires python-bitcoinlib w/ sendmany support:
+# Requires python-curiumlib w/ sendmany support:
 #
-# https://github.com/petertodd/python-bitcoinlib/commit/6a0a2b9429edea318bea7b65a68a950cae536790
+# https://github.com/petertodd/python-curiumlib/commit/6a0a2b9429edea318bea7b65a68a950cae536790
 
 import sys
 if sys.version_info.major < 3:
@@ -39,10 +39,10 @@ import logging
 import sys
 import os
 
-import bitcoin.rpc
-from bitcoin.core import *
-from bitcoin.core.script import *
-from bitcoin.wallet import *
+import curium.rpc
+from curium.core import *
+from curium.core.script import *
+from curium.wallet import *
 
 parser = argparse.ArgumentParser(
         description="Publish text in the blockchain, suitably padded for easy recovery with strings",
@@ -87,11 +87,11 @@ elif args.verbosity <= -2:
     logging.root.setLevel(logging.ERROR)
 
 if args.testnet:
-    bitcoin.SelectParams('testnet')
+    curium.SelectParams('testnet')
 elif args.regtest:
-    bitcoin.SelectParams('regtest')
+    curium.SelectParams('regtest')
 
-proxy = bitcoin.rpc.Proxy()
+proxy = curium.rpc.Proxy()
 
 if args.privkey is None:
     args.privkey = CBitcoinSecret.from_secret_bytes(os.urandom(32))

@@ -1,47 +1,47 @@
-bitcoin
+curium
 =======
 
-:mod:`bitcoin`
+:mod:`curium`
 --------------
 
-.. automodule:: bitcoin
+.. automodule:: curium
 
 :mod:`base58`
 -------------
 
-.. automodule:: bitcoin.base58
+.. automodule:: curium.base58
 
 :mod:`bloom`
 ------------
 
-.. automodule:: bitcoin.bloom
+.. automodule:: curium.bloom
 
 :mod:`messages`
 ---------------
 
-.. automodule:: bitcoin.messages
+.. automodule:: curium.messages
 
 :mod:`net`
 ----------
 
-.. automodule:: bitcoin.net
+.. automodule:: curium.net
 
 :mod:`rpc`
 ----------
 
-.. automodule:: bitcoin.rpc
+.. automodule:: curium.rpc
 
 :mod:`signature`
 ----------------
 
-.. automodule:: bitcoin.signature
+.. automodule:: curium.signature
 
 :mod:`signmessage`
 ------------------
 
-.. automodule:: bitcoin.signmessage
+.. automodule:: curium.signmessage
 
 :mod:`wallet`
 -------------
 
-.. automodule:: bitcoin.wallet
+.. automodule:: curium.wallet

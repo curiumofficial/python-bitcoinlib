@@ -1,11 +1,11 @@
-# Copyright (C) 2013-2014 The python-bitcoinlib developers
+# Copyright (C) 2013-2014 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -13,13 +13,13 @@ from __future__ import absolute_import, division, print_function, unicode_litera
 
 import unittest
 
-from bitcoin.rpc import Proxy
+from curium.rpc import Proxy
 
 class Test_RPC(unittest.TestCase):
     # Tests disabled, see discussion below.
     # "Looks like your unit tests won't work if Bitcoin Core isn't running;
     # maybe they in turn need to check that and disable the test if core isn't available?"
-    # https://github.com/petertodd/python-bitcoinlib/pull/10
+    # https://github.com/petertodd/python-curiumlib/pull/10
     pass
 
 #    def test_can_validate(self):

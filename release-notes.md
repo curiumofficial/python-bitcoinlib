@@ -1,4 +1,4 @@
-# python-bitcoinlib release notes
+# python-curiumlib release notes
 
 ## v0.10.1
 
@@ -37,7 +37,7 @@ change the name of the `CTransaction/CMutableTransaction` method `GetHash()` to
 
 Since this release doesn't yet include segwit support, you will need to set the
 Bitcoin Core `-rpcserialversion=0` option, either as a command line argument,
-or in your `bitcoin.conf` file. Otherwise the RPC interface will return
+or in your `curium.conf` file. Otherwise the RPC interface will return
 segwit-serialized transactions that this release's RPC support doesn't
 understand.
 
@@ -57,19 +57,19 @@ Breaking API changes:
   rather than `b''`
 
 * The alias `JSONRPCException = JSONRPCError` has been removed. This alias was
-  added for compatibility with v0.4.0 of python-bitcoinlib.
+  added for compatibility with v0.4.0 of python-curiumlib.
 
 * Where appropriate, `RPC_INVALID_ADDRESS_OR_KEY` errors are now caught
   properly, which means that rather than raising `IndexError`, RPC commands
   such as `getblock` may raise `JSONRPCError` instead. For instance during
-  initial startup previously python-bitcoinlib would incorrectly raise
+  initial startup previously python-curiumlib would incorrectly raise
   `IndexError` rather than letting the callee know that RPC was unusable. Along
   those lines, `JSONRPCError` subclasses have been added for some (but not
   all!) of the types of RPC errors Bitcoin Core returns.
 
 Bugfixes:
 
-* Fixed a spurious `AttributeError` when `bitcoin.rpc.Proxy()` fails.
+* Fixed a spurious `AttributeError` when `curium.rpc.Proxy()` fails.
 
 
 ## v0.6.1
@@ -90,8 +90,8 @@ Breaking API changes:
   support in v0.12.0 If you need this, use an alternative such as a stunnel or
   a SSH tunnel.
 
-* Removed SCRIPT_VERIFY constants ``bitcoin.core.script``, leaving just the
-  constants in ``bitcoin.core.scripteval``; being singletons the redundant
+* Removed SCRIPT_VERIFY constants ``curium.core.script``, leaving just the
+  constants in ``curium.core.scripteval``; being singletons the redundant
   constants were broken anyway.
 
 * SCRIPT_VERIFY_EVEN_S renamed to SCRIPT_VERIFY_LOW_S to match Bitcoin Core's naming
@@ -150,7 +150,7 @@ Notable bugfixes:
 
 * MsgSerializable.to_bytes() no longer clobbers testnet params
 * HTTPS RPC connections now use port 443 as default
-* No longer assumes bitcoin.conf specifes rpcuser
+* No longer assumes curium.conf specifes rpcuser
 
 New features:
 
@@ -164,7 +164,7 @@ New features:
 Major change: cleaned up what symbols are exported by modules. \_\_all\_\_ is now
 used extensively, which may break some applications that were not importing the
 right modules. Along those lines some implementation details like the ssl
-attribute of the bitcoin.core.key module, and the entire bitcoin.core.bignum
+attribute of the curium.core.key module, and the entire curium.core.bignum
 module, are no longer part of the public API. This should not affect too many
 users, but it will break some code.
 
@@ -177,7 +177,7 @@ Other notable changes:
 
 ## v0.2.1
 
-* Improve bitcoin address handling. P2SH and P2PKH addresses now get their own
+* Improve curium address handling. P2SH and P2PKH addresses now get their own
   classes - P2SHBitcoinAddress and P2PKHBitcoinAddress respectively - and P2PKH
   can now convert scriptPubKeys containing non-canonical pushes as well as bare
   checksig to addresses.
@@ -201,6 +201,6 @@ Other changes:
 * Various bugfixes
 
 Finally starting this release, git tags will be of the form
-'python-bitcoinlib-(version)', replacing the less specific '(version)' form
+'python-curiumlib-(version)', replacing the less specific '(version)' form
 previously used.
 

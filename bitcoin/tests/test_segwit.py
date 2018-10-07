@@ -1,11 +1,11 @@
-# Copyright (C) 2016 The python-bitcoinlib developers
+# Copyright (C) 2016 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
@@ -15,10 +15,10 @@ import unittest
 import random
 import sys
 
-import bitcoin
-from bitcoin.core import *
-from bitcoin.core.script import *
-from bitcoin.wallet import *
+import curium
+from curium.core import *
+from curium.core.script import *
+from curium.wallet import *
 
 if sys.version > '3':
     _bytes = bytes
@@ -133,7 +133,7 @@ class Test_Segwit(unittest.TestCase):
         witness_merkle_root = CBlock.build_witness_merkle_tree_from_txs((coinbase, tx_legacy, tx_segwit))[-1]
 
         commitment = Hash(witness_merkle_root + witness_nonce)
-        commitment_script = bitcoin.core.WITNESS_COINBASE_SCRIPTPUBKEY_MAGIC + commitment
+        commitment_script = curium.core.WITNESS_COINBASE_SCRIPTPUBKEY_MAGIC + commitment
         coinbase.vout.append(CTxOut(0, CScript(commitment_script)))
 
         block = CBlock(2, b'\x00'*32, b'\x00'*32, 0, 0, 0, (coinbase, tx_legacy, tx_segwit))

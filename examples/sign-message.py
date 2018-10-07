@@ -1,20 +1,20 @@
 #!/usr/bin/env python3
 #
-# Copyright (C) 2013-2015 The python-bitcoinlib developers
+# Copyright (C) 2013-2015 The python-curiumlib developers
 #
-# This file is part of python-bitcoinlib.
+# This file is part of python-curiumlib.
 #
 # It is subject to the license terms in the LICENSE file found in the top-level
 # directory of this distribution.
 #
-# No part of python-bitcoinlib, including this file, may be copied, modified,
+# No part of python-curiumlib, including this file, may be copied, modified,
 # propagated, or distributed except according to the terms contained in the
 # LICENSE file.
 
 from __future__ import absolute_import, division, print_function, unicode_literals
 
-from bitcoin.wallet import CBitcoinSecret, P2PKHBitcoinAddress
-from bitcoin.signmessage import BitcoinMessage, VerifyMessage, SignMessage
+from curium.wallet import CBitcoinSecret, P2PKHBitcoinAddress
+from curium.signmessage import BitcoinMessage, VerifyMessage, SignMessage
 
 def sign_message(key, msg):
     secret = CBitcoinSecret(key)
@@ -32,8 +32,8 @@ def print_verbose(signature, key, msg):
     print('Message: %s' % msg)
     print('Signature: %s' % signature)
     print('Verified: %s' % VerifyMessage(address, message, signature))
-    print('\nTo verify using bitcoin core:')
-    print('\n`bitcoin-cli verifymessage %s \'%s\' \'%s\'`\n' % (address, signature.decode('ascii'), msg))
+    print('\nTo verify using curium core:')
+    print('\n`curium-cli verifymessage %s \'%s\' \'%s\'`\n' % (address, signature.decode('ascii'), msg))
 
 def parser():
     import argparse
